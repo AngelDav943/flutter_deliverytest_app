@@ -18,7 +18,7 @@ void insertItem(String name, double price, {int amount = 1, image}) {
   bool hasDuplicate = false;
   for (var element in cartlist) {
     if (newItem.name == element.name) {
-      element.amount++;
+      element.amount += amount;
       hasDuplicate = true;
     }
   }
