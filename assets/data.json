@@ -1,0 +1,37 @@
+{
+    "restaurants" : {
+        "mcDonalds": {
+            "icon":"mcDonalds.png",
+            "display": "McDonald's",
+            "items": [0]
+        },
+        "dominosPizza": {
+            "icon":"dominosPizza.png",
+            "display": "Domino's Pizza",
+            "items": [1,2]
+        }
+    },
+    "items": [
+        {
+            "restaurantid": "mcDonalds",
+            "image": "hamburger.png",
+            "name": "Hamburger",
+            "price": 4000,
+            "amount": 1
+        },
+        {
+            "restaurantid": "dominosPizza",
+            "image": "pizza.png",
+            "name": "Pizza",
+            "price": 8500,
+            "amount": 1
+        },
+        {
+            "restaurantid": "dominosPizza",
+            "image": "pizza.png",
+            "name": "Pineapple pizza",
+            "price": 9000,
+            "amount": 1
+        }
+    ]
+}
