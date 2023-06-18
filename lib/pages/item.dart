@@ -1,16 +1,17 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'all.dart';
+import 'widgets/inputs.dart';
 
 class Item extends StatefulWidget {
-  const Item({
-    super.key,
-    this.title = "",
-    this.description = "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-    this.price = 0,
-    this.image = "",
-    this.restaurantImage = "bob.png"
-  });
+  const Item(
+      {super.key,
+      this.title = "",
+      this.description =
+          "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+      this.price = 0,
+      this.image = "",
+      this.restaurantImage = "bob.png"});
 
   final String title;
   final String description;
@@ -44,13 +45,14 @@ class _ItemState extends State<Item> {
                     ImageButton(
                       image: "back.png",
                       pressUp: () {
-                        Navigator.pop(context,true);
+                        Navigator.pop(context, true);
                       },
                     ),
                     ImageButton(
                       image: "cart.png",
                       pressUp: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
                           return const Cart();
                         }));
                       },
@@ -75,121 +77,122 @@ class _ItemState extends State<Item> {
                 alignment: AlignmentDirectional.topStart,
                 color: const Color.fromRGBO(255, 255, 255, 0.8),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.only(right: 15),
-                          padding: const EdgeInsets.all(10),
-                          decoration: const BoxDecoration(
-                            color: Color.fromRGBO(0, 0, 0, 0.5),
-                            borderRadius: BorderRadius.all(Radius.circular(100))
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            margin: const EdgeInsets.only(right: 15),
+                            padding: const EdgeInsets.all(10),
+                            decoration: const BoxDecoration(
+                                color: Color.fromRGBO(0, 0, 0, 0.5),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(100))),
+                            child: Image.asset(
+                              "assets/restaurants/${widget.restaurantImage}",
+                              height: 30,
+                              width: 30,
+                            ),
                           ),
-                          child: Image.asset(
-                            "assets/restaurants/${widget.restaurantImage}",
-                            height: 30,
-                            width: 30,
-                          ),
-                        ),
-                        Expanded(
-                          child: Text(
+                          Expanded(
+                            child: Text(
                               widget.title,
                               style: Theme.of(context).textTheme.displaySmall,
                               overflow: TextOverflow.clip,
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                    Container(
-                      margin: const EdgeInsets.only(top: 10),
-                      child: Text(widget.description)
-                    ),
-                    Container(
-                      margin: const EdgeInsets.all(10),
-                      child: Text("\$${widget.price}")
-                    )
-                  ]
-                ),
+                        ],
+                      ),
+                      Container(
+                          margin: const EdgeInsets.only(top: 10),
+                          child: Text(widget.description)),
+                      Container(
+                          margin: const EdgeInsets.all(10),
+                          child: Text("\$${widget.price}"))
+                    ]),
               ),
             ),
             Container(
-              color: const Color.fromRGBO(255, 255, 255, 0.5),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Expanded(
-                    child: Container(
-                      margin: const EdgeInsets.all(10),
+                color: const Color.fromRGBO(255, 255, 255, 0.5),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Expanded(
                       child: Container(
-                        decoration: const BoxDecoration(
-                          color: Color.fromRGBO(0, 0, 0, 0.5),
-                          borderRadius: BorderRadius.all(Radius.circular(100))
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            ImageButton(
-                              image: "minus.png",
-                              height: 30,
-                              pressUp: () {
-                                setState(() {
-                                  amount = max(1, amount - 1);
-                                  total = widget.price * amount;
-                                });
-                              }
-                            ),
-                            Text(
-                              "$amount",
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 25
+                        margin: const EdgeInsets.all(10),
+                        child: Container(
+                          decoration: const BoxDecoration(
+                              color: Color.fromRGBO(0, 0, 0, 0.5),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(100))),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              ImageButton(
+                                  image: "minus.png",
+                                  height: 30,
+                                  pressUp: () {
+                                    setState(() {
+                                      amount = max(1, amount - 1);
+                                      total = widget.price * amount;
+                                    });
+                                  }),
+                              Text(
+                                "$amount",
+                                style: const TextStyle(
+                                    color: Colors.white, fontSize: 25),
+                                overflow: TextOverflow.ellipsis,
                               ),
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            ImageButton(
-                              image: "plus.png",
-                              height: 30,
-                              pressUp: () {
-                                setState(() {
-                                  amount = min(999, amount + 1);
-                                  total = widget.price * amount;
-                                });
-                              }
-                            ),
-                          ],
+                              ImageButton(
+                                  image: "plus.png",
+                                  height: 30,
+                                  pressUp: () {
+                                    setState(() {
+                                      amount = min(999, amount + 1);
+                                      total = widget.price * amount;
+                                    });
+                                  }),
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Expanded(
-                    child: FilledButton(
-                      onPressed: () {
-                        showDialog(context: context, builder: (builder){
-                          return AlertDialog(
-                            title: const Text("Are you sure?"),
-                            content: Text("Do you want to buy $amount ${widget.title}${amount > 1 ? "s" : ""} for a total of \$$total?"),
-                            actions: [
-                              ElevatedButton(onPressed: () {
-                                Navigator.pop(context, false);
-                              }, child: const Text("No")),
-                              FilledButton(onPressed: () {
-                                insertItem(widget.title, widget.price, amount: amount, image: widget.image);
-                                Navigator.pop(context, false);
-                                Navigator.pop(context, false);
-                              }, child: const Text("Yes")),
-                            ],
-                          );
-                        });
-                      },
-                      child: Text("Add \$$total")
-                    ),
-                  )
-                ],
-              )
-            ),
+                    Expanded(
+                      child: FilledButton(
+                          onPressed: () {
+                            showDialog(
+                                context: context,
+                                builder: (builder) {
+                                  return AlertDialog(
+                                    title: const Text("Are you sure?"),
+                                    content: Text(
+                                        "Do you want to buy $amount ${widget.title}${amount > 1 ? "s" : ""} for a total of \$$total?"),
+                                    actions: [
+                                      ElevatedButton(
+                                          onPressed: () {
+                                            Navigator.pop(context, false);
+                                          },
+                                          child: const Text("No")),
+                                      FilledButton(
+                                          onPressed: () {
+                                            insertItem(
+                                                widget.title, widget.price,
+                                                amount: amount,
+                                                image: widget.image);
+                                            Navigator.pop(context, false);
+                                            Navigator.pop(context, false);
+                                          },
+                                          child: const Text("Yes")),
+                                    ],
+                                  );
+                                });
+                          },
+                          child: Text("Add \$$total")),
+                    )
+                  ],
+                )),
           ],
         ),
       ),
